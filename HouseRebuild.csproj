@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>HouseRebuild</AssemblyName>
+    <Product>Rebuild</Product>
+    <Version>0.0.1</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <BookOfHoursDir>C:\Program Files (x86)\Steam\steamapps\common\Book of Hours</BookOfHoursDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutDir>$(BookOfHoursDir)\BepInEx\plugins\$(AssemblyName)\</OutDir>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutDir>$(BookOfHoursDir)\BepInEx\plugins\$(AssemblyName)\</OutDir>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2022.3.53" IncludeAssets="compile" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(BookOfHoursDir)\BepInEx\core\0Harmony.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\Assembly-CSharp.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="SecretHistories.Constants">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\SecretHistories.Constants.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="SecretHistories.Enums">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\SecretHistories.Enums.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="SecretHistories.Interfaces">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\SecretHistories.Interfaces.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="SecretHistories.Main">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\SecretHistories.Main.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\Unity.InputSystem.dll</HintPath><Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(BookOfHoursDir)\bh_Data\Managed\UnityEngine.UI.dll</HintPath><Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
