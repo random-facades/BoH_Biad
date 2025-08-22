@@ -4,13 +4,13 @@ using BepInEx.Logging;
 namespace HouseRebuild;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-public class Plugin : BaseUnityPlugin
+public class RebuildPlugin : BaseUnityPlugin
 {
-    public static ManualLogSource logger;
+    public static new ManualLogSource Logger;
 
     private void Awake()
     {
-        logger = base.Logger;
-        logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        Logger = base.Logger;
+        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 }
